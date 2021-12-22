@@ -24,19 +24,20 @@ else:
     from dezero.core import setup_variable
     from dezero.core import Config
     from dezero.core import Parameter
-    '''
     from dezero.layers import Layer
+    import dezero.layers
     from dezero.models import Model
+    
+    import dezero.optimizers
+    '''
     from dezero.datasets import Dataset
     from dezero.dataloaders import DataLoader
     from dezero.dataloaders import SeqDataLoader
 
     import dezero.datasets
     import dezero.dataloaders
-    import dezero.optimizers
     import dezero.functions
     import dezero.functions_conv
-    import dezero.layers
     import dezero.utils
     import dezero.cuda
     import dezero.transforms
