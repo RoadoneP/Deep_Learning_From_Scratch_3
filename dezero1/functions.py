@@ -3,14 +3,9 @@ import dezero
 from dezero import cuda, utils
 from dezero.core import Function, Variable, as_variable, as_array
 
-
-# =============================================================================
-# Basic functions: sin / cos / tanh / exp / log
-# =============================================================================
 class Sin(Function):
     def forward(self, x):
-        xp = cuda.get_array_module(x)
-        y = xp.sin(x)
+        y = np.sin(x)
         return y
 
     def backward(self, gy):
@@ -18,58 +13,47 @@ class Sin(Function):
         gx = gy * cos(x)
         return gx
 
-
 def sin(x):
     return Sin()(x)
 
-
 class Cos(Function):
     def forward(self, x):
-        xp = cuda.get_array_module(x)
-        y = xp.cos(x)
+        y = np.cos(x)
         return y
-
+    
     def backward(self, gy):
         x, = self.inputs
         gx = gy * -sin(x)
         return gx
 
-
 def cos(x):
     return Cos()(x)
 
-
 class Tanh(Function):
     def forward(self, x):
-        xp = cuda.get_array_module(x)
-        y = xp.tanh(x)
+        y = np.tanh(x)
         return y
-
+    
     def backward(self, gy):
-        y = self.outputs[0]()  # weakref
+        y = self.outputs[0]()
         gx = gy * (1 - y * y)
         return gx
-
-
+    
 def tanh(x):
     return Tanh()(x)
 
-
 class Exp(Function):
     def forward(self, x):
-        xp = cuda.get_array_module(x)
-        y = xp.exp(x)
+        y = np.exp(x)
         return y
-
+    
     def backward(self, gy):
-        y = self.outputs[0]()  # weakref
+        y = self.outputs[0]()
         gx = gy * y
         return gx
 
-
 def exp(x):
     return Exp()(x)
-
 
 class Log(Function):
     def forward(self, x):
@@ -664,14 +648,14 @@ def clip(x, x_min, x_max):
 # =============================================================================
 # conv2d / col2im / im2col / basic_math
 # =============================================================================
-from dezero.functions_conv import conv2d
-from dezero.functions_conv import deconv2d
-from dezero.functions_conv import conv2d_simple
-from dezero.functions_conv import im2col
-from dezero.functions_conv import col2im
-from dezero.functions_conv import pooling_simple
-from dezero.functions_conv import pooling
-from dezero.functions_conv import average_pooling
+# from dezero.functions_conv import conv2d
+# from dezero.functions_conv import deconv2d
+# from dezero.functions_conv import conv2d_simple
+# from dezero.functions_conv import im2col
+# from dezero.functions_conv import col2im
+# from dezero.functions_conv import pooling_simple
+# from dezero.functions_conv import pooling
+# from dezero.functions_conv import average_pooling
 from dezero.core import add
 from dezero.core import sub
 from dezero.core import rsub
